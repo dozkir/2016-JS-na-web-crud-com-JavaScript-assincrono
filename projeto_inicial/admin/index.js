@@ -4,7 +4,7 @@ let app = express();
 app.use(express.static("."));
 
 app.get("/", (req, res) => {
-    res.sendFile(__dirname + '/telas/lista_cliente.html')
+    res.sendFile(__dirname + '/view/lista_cliente.html')
 })
 
 app.listen(3012, () => {

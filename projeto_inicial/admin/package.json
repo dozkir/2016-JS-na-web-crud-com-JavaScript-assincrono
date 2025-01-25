@@ -5,13 +5,19 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node .",
-    "start-json-server": "npx json-server --watch db.json --port 3001 --host 0.0.0.0"
+    "start-raw": "node .",
+    "start-browser-sync": "npx browser-sync start --server \"src\" --files \"**/*.css, **/*.html, **/*.js\" --port 3001 --startPath view/lista_cliente.html --hostname dozkir",
+    "start-json-server": "npx json-server --watch db.json --port 3003 --host 0.0.0.0",
+    "start-main": "concurrently \"npm run start-browser-sync\" \"npm run start-json-server\""
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "express": "^4.21.2",
     "json-server": "^0.16.2"
+  },
+  "devDependencies": {
+    "browser-sync": "^3.0.3",
+    "concurrently": "^9.1.2"
   }
 }

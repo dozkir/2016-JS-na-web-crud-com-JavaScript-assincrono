@@ -1,4 +1,4 @@
-
+import { clienteService } from "../service/cliente-service.js";
 
 const criaNovaLinha = (nome, email) => {
 
@@ -21,29 +21,9 @@ const criaNovaLinha = (nome, email) => {
 
 const tabela = document.querySelector('[data-tabela]');
 
-const listaClientes = () => {
-    const promise = new Promise((resolve, reject) => {
-        const http = new XMLHttpRequest();
-
-        http.open('GET', 'http://dozkir:3001/profile');
-        http.send();
-
-        http.onload = () => {
-            if (http.status >= 400) {
-                reject(JSON.parse(http.response));
-            } else {
-                resolve(JSON.parse(http.response));
-            }
-        }
-    })
-
-    return promise;
-}
-
-listaClientes()
+clienteService.listaClientes()
     .then(data => {
         data.forEach(element => {
             tabela.appendChild(criaNovaLinha(element.nome, element.email));
         });
     });
-
